@@ -1,4 +1,5 @@
 Exmlia
 ======
 
-** TODO: Add description **
+Elixir implementation of Kademlia.
+
