@@ -1,6 +1,12 @@
 defmodule analyzer do
 
   def start(n, m, host, port, is_churn) do
+    result <- terminate
+
+    pid = spawn(fn -> result(0, 0, []) end)
+    register(result, pid)
+
+    start0(n, m, host, port, is_churn)
   end
 
   def start0(n, m, host, port, is_churn) do
