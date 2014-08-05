@@ -44,6 +44,20 @@ defmodule analyzer do
   end
 
   def try_get(offset, n, suffix, try_num, host, port, is_churn) do
+    when try_num > 0
+    cond do
+      is_churn == true ->
+        Exmlia.exmlia.start(0, suffix)
+        receive
+        after 1000
+        true
+        end
+        join(host, port, 20, suffix);
+      true ->
+        true
+      end
+
+      {success, fail, rtt} = get_data(offset, n, suffix)
   end
 
   def try_get(_, _, _, _, _, _, _) do
